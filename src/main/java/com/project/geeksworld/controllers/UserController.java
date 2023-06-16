@@ -5,6 +5,8 @@ import com.project.geeksworld.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*; // Importar a classe List corretamente
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -15,6 +17,11 @@ public class UserController {
     @GetMapping("/{userId}")
     public UserEntity getUser(@PathVariable Long userId) {
         return userRepository.findById(userId).orElse(null);
+    }
+    
+    @GetMapping
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
     }
     
     @PostMapping
