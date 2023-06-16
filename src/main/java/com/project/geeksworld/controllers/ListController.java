@@ -12,14 +12,19 @@ public class ListController {
     @Autowired
     ListRepository listRepository;
 
-    @PostMapping
-    public ListEntity create (@RequestBody ListEntity list){
-        return listRepository.save(list);
-    }
-
     @GetMapping
     public java.util.List<ListEntity> list(){
         return listRepository.findAll();
+    }
+    
+    @GetMapping("/{listId}")
+    public ListEntity getUser(@PathVariable Long listId) {
+        return listRepository.findById(listId).orElse(null);
+    }
+    
+    @PostMapping
+    public ListEntity create (@RequestBody ListEntity list){
+        return listRepository.save(list);
     }
 
     @PutMapping("/{listId}")
