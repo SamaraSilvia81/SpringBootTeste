@@ -19,6 +19,11 @@ public class CharacterController {
     public List<CharacterEntity> list() {
         return characterRepository.findAll();
     }
+    
+    @GetMapping("/{characterId}")
+    public CharacterEntity getUser(@PathVariable Long characterId) {
+        return characterRepository.findById(characterId).orElse(null);
+    }
 
     @PostMapping
     public CharacterEntity create(@RequestBody CharacterEntity character) {
